@@ -17,24 +17,14 @@ minecraft {
 }
 
 repositories {
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = 'Modrinth'
-                url = 'https://api.modrinth.com/maven'
-            }
-        }
-        filter {
-            includeGroup 'maven.modrinth'
-        }
-    }
+    mavenCentral()
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    // Iron's Spells 'n Spellbooks 1.20.1-3.16.2 from Modrinth. Only used to compile.
-    compileOnly fg.deobf("maven.modrinth:s4OWxYQQ:9v34JOKI")
+    // Iron's Spells jar, downloaded into libs/ by the GitHub workflow. Only used to compile.
+    compileOnly files('libs/irons_spellbooks.jar')
 }
 
 tasks.named('processResources', ProcessResources).configure {
